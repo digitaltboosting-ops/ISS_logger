@@ -1,0 +1,26 @@
+name: Logga ISS
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # Kör var 10:e minut
+  workflow_dispatch:         # Gör att du kan starta den för hand
+
+permissions:
+  contents: write            # Tillåter att databasen sparas i repot
+
+jobs:
+  hamta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests python-dotenv
+      - run: python hamta.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.db
+          git commit -m "Ny mätning från molnet" || exit 0
+          git push
