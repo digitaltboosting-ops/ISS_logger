@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests python-dotenv
-      - run: python hamta.py
+      - run: python fetchdata.py
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
