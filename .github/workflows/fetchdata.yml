@@ -2,7 +2,7 @@ name: Logga ISS
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # Kör var 10:e minut
+    - cron: "0 * * * *"     # Kör en gång i timmen"   # Kör var 10:e minut
   workflow_dispatch:         # Gör att du kan starta den för hand
 
 permissions:
